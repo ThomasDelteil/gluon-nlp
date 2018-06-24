@@ -40,8 +40,10 @@ except ImportError:
 def get_context(args):
     if args.gpu is None or args.gpu == '':
         context = [mx.cpu()]
+    elif isintance(args.gpu, int):
+        context = [mx.gpu(args.gpu)]
     else:
-        context = [mx.gpu(int(i)) for i in args.gpu]
+        context = [mx.gpu(i) for i in args.gpu]
     return context
 
 
